@@ -8,4 +8,6 @@ $ pipenv install django
 $ pipenv shell
 ```
 
-Then follow the guid at [https://docs.djangoproject.com/en/2.1/intro/tutorial01/](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) (PDF in `docs/`)
+Then follow the guide at [https://docs.djangoproject.com/en/2.1/intro/tutorial01/](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) (PDF in `docs/`)
+
+> Note: instead of a simple "polls" app from the guide, name it "myapp" for generics' sake.
