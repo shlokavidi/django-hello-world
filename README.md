@@ -1,40 +1,45 @@
-# simple-python-app
+# django-hello-world
 
-## Steps to build app to current state
+## Create from scratch
 
 ```sh
-$ brew install pipenv
-$ pipenv install django django-heroku gunicorn
-$ echo 'web: gunicorn --pythonpath mysite mysite.wsgi' > Procfile # Heroku expects the project to be at root level. `--pythyonpath` allows it to be in a specified subdirectory path.
-$ pipenv shell
-$ pip freeze > requirements.txt
+brew install pipenv
+pipenv install django django-heroku gunicorn
+echo 'web: gunicorn --pythonpath mysite mysite.wsgi' > Procfile # Heroku expects the project to be at root level. `--pythyonpath` allows it to be in a specified subdirectory path.
+pipenv shell
+pip freeze > requirements.txt
 ```
-
-Then follow the guides at [https://docs.djangoproject.com/en/2.1/intro/tutorial01/](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) (PDF in `docs/`) to get a basic hello world app running locally, and [https://devcenter.heroku.com/articles/django-app-configuration](https://devcenter.heroku.com/articles/django-app-configuration) to get it running on Heroku.
-
-> Note: instead of a simple “polls” app from the `djangoproject` guide, name it “myapp” for generics' sake.
 
 In `mysite/settings.py`, add `import django_heroku` at top and `django_heroku.settings(locals())` at end.
 
-## Deploying locally
+## Deployment
+
+### Local
 
 ```sh
-$ pipenv shell
-$ python mysite/manage.py runserver
-$ open http://localhost:8000
+pipenv shell
+python mysite/manage.py runserver
+open http://localhost:8000
 ```
 
-Using `heroku local`:
+### Locally with Heroku:
 
 ```sh
-$ heroku local
-$ open http://localhost:5000
+heroku local
+open http://localhost:5000
 ```
 
 ## Deploying to Heroku
 
 ```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
+heroku create # make sure your ‘heroku’ git remote points to the correct app's git url, like if there was a previous one
+git push heroku master
+heroku open
 ```
+
+## References
+
+- [https://docs.djangoproject.com/en/2.1/intro/tutorial01/](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
+- [https://devcenter.heroku.com/articles/django-app-configuration](https://devcenter.heroku.com/articles/django-app-configuration)
+
+> Note: References preserved as PDFs in `docs/`.
