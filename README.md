@@ -19,16 +19,14 @@ In `mysite/settings.py`, add `import django_heroku` at top and `django_heroku.se
 ## Deploying locally
 
 ```sh
-$ cd mysite
 $ pipenv shell
-$ python manage.py runserver
+$ python mysite/manage.py runserver
 $ open http://localhost:8000
 ```
 
 Using `heroku local`:
 
 ```sh
-$ cd mysite
 $ heroku local
 $ open http://localhost:5000
 ```
