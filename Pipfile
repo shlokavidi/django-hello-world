@@ -7,8 +7,8 @@ name = "pypi"
 
 [packages]
 django = "*"
-gunicorn = "*"
 django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

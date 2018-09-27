@@ -15,8 +15,8 @@
 
 ```sh
 # set up python dev environment
-pipenv install django django-heroku gunicorn
 pipenv --three
+pipenv install django django-heroku gunicorn
 pipenv shell
 
 # create the django project and app
@@ -25,15 +25,32 @@ pushd mysite
 python manage.py startapp myapp
 popd
 
+# create the Hello World! view
+echo "from django.http import HttpResponse
+def index(request):
+    return HttpResponse('Hello, world!')" > mysite/myapp/views.py
+
+# add the app route
+echo "from django.urls import path
+from . import views
+urlpatterns = [
+    path('', views.index, name='index'),
+]" > mysite/myapp/urls.py
+
+# add django_heroku settings
+echo "import django_heroku
+django_heroku.settings(locals())" >> mysite/mysite/settings.py
+
+# update main project routes to direct towards app
+sed -i '' 's/from django.urls import path/from django.urls import include, path/g' mysite/mysite/urls.py
+sed -i '' 's/urlpatterns = \[/urlpatterns = \[\
+    path(\'\', include(\'myapp.urls\')),/g' mysite/mysite/urls.py
+
 # wrap dependencies for Heroku
 pip freeze > requirements.txt
 
 # create Procfile for Heroku
 echo 'web: gunicorn --pythonpath mysite mysite.wsgi' > Procfile # Heroku expects the project to be at root level. `--pythyonpath` allows it to be in a specified subdirectory path.
-
-# add django_heroku settings
-echo "import django_heroku
-django_heroku.settings(locals())" >> mysite/mysite/settings.py
 
 # ignore the default sqlite database and python bytecode
 echo "mysite/db.sqlite3
