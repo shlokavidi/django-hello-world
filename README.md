@@ -3,14 +3,25 @@
 ## Create from scratch
 
 ```sh
+# set up python dev environment
 brew install pipenv
 pipenv install django django-heroku gunicorn
-echo 'web: gunicorn --pythonpath mysite mysite.wsgi' > Procfile # Heroku expects the project to be at root level. `--pythyonpath` allows it to be in a specified subdirectory path.
 pipenv shell
-pip freeze > requirements.txt
-```
 
-In `mysite/settings.py`, add `import django_heroku` at top and `django_heroku.settings(locals())` at end.
+# wrap dependencies for Heroku
+pip freeze > requirements.txt
+
+# create Procfile for Heroku
+echo 'web: gunicorn --pythonpath mysite mysite.wsgi' > Procfile # Heroku expects the project to be at root level. `--pythyonpath` allows it to be in a specified subdirectory path.
+
+# add django_heroku settings
+echo "import django_heroku
+django_heroku.settings(locals())" >> mysite/mysite/settings.py
+
+# ignore the default sqlite database and python bytecode
+echo "mysite/db.sqlite3
+*.pyc" > .gitignore
+```
 
 ## Deployment
 
