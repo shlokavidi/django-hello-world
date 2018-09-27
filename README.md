@@ -22,7 +22,7 @@ In `mysite/settings.py`, add `import django_heroku` at top and `django_heroku.se
 $ cd mysite
 $ pipenv shell
 $ python manage.py runserver
-$ open http://localhost:8000/myapp
+$ open http://localhost:8000
 ```
 
 Using `heroku local`:
@@ -30,7 +30,7 @@ Using `heroku local`:
 ```sh
 $ cd mysite
 $ heroku local
-$ open http://localhost:5000/myapp
+$ open http://localhost:5000
 ```
 
 ## Deploying to Heroku
