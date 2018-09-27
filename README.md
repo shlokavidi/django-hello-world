@@ -2,11 +2,28 @@
 
 ## Create from scratch
 
+### Requirements
+
+- [git](https://git-scm.com)
+- [homebrew](https://brew.sh)
+- [python](https://www.python.org)
+- [pip](https://pip.pypa.io/en/stable/)
+- [pipenv](https://github.com/pypa/pipenv)
+- [heroku cli](https://devcenter.heroku.com/articles/heroku-cli)
+
+> Note: everything after homebrew should be installable via `brew install python pipenv heroku-cli`
+
 ```sh
 # set up python dev environment
-brew install pipenv
 pipenv install django django-heroku gunicorn
+pipenv --three
 pipenv shell
+
+# create the django project and app
+django-admin startproject mysite
+pushd mysite
+python manage.py startapp myapp
+popd
 
 # wrap dependencies for Heroku
 pip freeze > requirements.txt
@@ -50,7 +67,7 @@ heroku open
 
 ## References
 
-- [https://docs.djangoproject.com/en/2.1/intro/tutorial01/](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
-- [https://devcenter.heroku.com/articles/django-app-configuration](https://devcenter.heroku.com/articles/django-app-configuration)
+- [Writing your first Django app, part 1](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
+- [Configuring Django Apps for Heroku](https://devcenter.heroku.com/articles/django-app-configuration)
 
 > Note: References preserved as PDFs in `docs/`.
