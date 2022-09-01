@@ -1,6 +1,6 @@
 # django-hello-world
 
-## Create from scratch
+## Create from scratch (haha)
 
 ### Requirements
 
